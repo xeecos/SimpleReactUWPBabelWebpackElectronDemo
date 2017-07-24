@@ -2,7 +2,7 @@
 var webpack = require('webpack');
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-
+var BomPlugin = require('webpack-utf8-bom');
 module.exports = [{
     entry: [
         './src/browser/index.jsx',
@@ -58,7 +58,8 @@ module.exports = [{
         }),
         new webpack.DefinePlugin({
             $dirname: '__dirname',
-        })
+        }),
+        new BomPlugin(true, /\.(js)$/)
     ]
 }, {
     entry: './src/electron/app.js',
